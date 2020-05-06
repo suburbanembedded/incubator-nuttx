@@ -220,6 +220,13 @@ config ARCH_CHIP_S32K1XX
 	---help---
 		NPX LPC54XX architectures (ARM Cortex-M0+ and Cortex-M4F).
 
+config ARCH_CHIP_S32SXXX
+	bool "NXP S32SXXX"
+	select ARCH_HAVE_MPU
+	select ARCH_HAVE_FPU
+	---help---
+		NPX S32S architectures
+
 config ARCH_CHIP_SAMA5
 	bool "Atmel SAMA5"
 	select ARCH_CORTEXA5
@@ -648,6 +655,18 @@ config ARCH_CORTEXR7
 	select ARCH_HAVE_MPU
 	select ARCH_HAVE_TESTSET
 
+config ARCH_ARMV8R
+	bool
+	default n
+
+config ARCH_CORTEXR52
+	bool
+	default n
+	select ARCH_ARMV8R
+	select ARCH_DCACHE
+	select ARCH_ICACHE
+	select ARCH_HAVE_MPU
+
 config ARCH_FAMILY
 	string
 	default "arm"		if ARCH_ARM7TDMI || ARCH_ARM926EJS || ARCH_ARM920T
@@ -655,6 +674,7 @@ config ARCH_FAMILY
 	default "armv7-a"	if ARCH_ARMV7A
 	default "armv7-m"	if ARCH_ARMV7M
 	default "armv7-r"	if ARCH_ARMV7R
+	default "armv8-r"	if ARCH_ARMV8R
 
 config ARCH_CHIP
 	string
@@ -681,6 +701,7 @@ config ARCH_CHIP
 	default "nrf52"		if ARCH_CHIP_NRF52
 	default "nuc1xx"	if ARCH_CHIP_NUC1XX
 	default "s32k1xx"	if ARCH_CHIP_S32K1XX
+	default "s32sxxx"	if ARCH_CHIP_S32SXXX
 	default "sama5"		if ARCH_CHIP_SAMA5
 	default "samd2l2"	if ARCH_CHIP_SAMD2X || ARCH_CHIP_SAML2X
 	default "samd5e5"	if ARCH_CHIP_SAMD5X || ARCH_CHIP_SAME5X
@@ -904,6 +925,9 @@ source arch/arm/src/lpc54xx/Kconfig
 endif
 if ARCH_CHIP_S32K1XX
 source arch/arm/src/s32k1xx/Kconfig
+endif
+if ARCH_CHIP_S32SXXX
+source arch/arm/src/s32sxxx/Kconfig
 endif
 if ARCH_CHIP_MAX326XX
 source arch/arm/src/max326xx/Kconfig
