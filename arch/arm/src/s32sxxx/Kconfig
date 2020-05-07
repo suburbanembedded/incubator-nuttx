@@ -16,7 +16,7 @@ config ARCH_CHIP_S32S247TV
 	select ARCH_CHIP_S32S2
 	select S32SXXX_HAVE_ENET
 	---help---
-		Cortex-R52, 4 core complex, XXKb FLASH, XXKb RAM
+		Cortex-R52, 4 core complex, XXKb FLASH, 16Mb RAM, 4x3x32kb TCM
 
 endchoice # S32SXXX Chip Selection
 
